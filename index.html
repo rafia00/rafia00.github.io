@@ -111,8 +111,7 @@
 
   /* ---------- Hero ---------- */
   .hero{padding-block:56px 48px; border-bottom:1px solid var(--border);}
-  .hero-grid{display:grid; grid-template-columns:1.15fr 1fr; gap:40px; align-items:center;}
-  @media (max-width:760px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero-grid{max-width:620px;}
 
   .status-pill{
     display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono);
@@ -142,28 +141,6 @@
   .btn:hover{transform:translateY(-1px); border-color:var(--accent);}
   .btn:active{transform:translateY(0);}
   .btn-copied{color:var(--good)!important; border-color:var(--good)!important;}
-
-  /* Terminal readout */
-  .terminal{
-    background:var(--ink); color:#D7E4E2; border-radius:12px; overflow:hidden;
-    box-shadow:0 20px 40px -24px rgba(0,0,0,.45); border:1px solid var(--border);
-  }
-  :root[data-theme="dark"] .terminal{background:#06090D;}
-  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .terminal{background:#06090D;} }
-  .terminal-bar{display:flex; align-items:center; gap:7px; padding:11px 14px; background:rgba(255,255,255,.06);}
-  .terminal-bar .dot{width:10px; height:10px; border-radius:50%;}
-  .terminal-bar .r{background:#FF5F57;} .terminal-bar .y{background:#FEBC2E;} .terminal-bar .g{background:#28C840;}
-  .terminal-title{margin-left:8px; font-family:var(--font-mono); font-size:0.75rem; color:#8A96A3;}
-  .terminal-body{
-    margin:0; padding:20px 18px 24px; font-family:var(--font-mono); font-size:0.85rem;
-    line-height:1.85; white-space:pre-wrap;
-  }
-  .t-prompt{color:#6FD6C9;}
-  .t-pass{color:#52E3A4; font-weight:600;}
-  .t-dim{color:#6B7684;}
-  .cursor{display:inline-block; width:7px; height:1em; background:#52E3A4; margin-left:2px; vertical-align:text-bottom;}
-  @media (prefers-reduced-motion: no-preference){ .cursor{animation:blink 1s step-end infinite;} }
-  @keyframes blink{50%{opacity:0;}}
 
   /* ---------- Stat row ---------- */
   .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-top:40px;}
@@ -299,17 +276,6 @@
         <button class="btn" id="heroEmailBtn" type="button">Copy Email</button>
         <a class="btn" href="https://www.linkedin.com/in/rafia-fatima-41b328215/" target="_blank" rel="noopener">View LinkedIn ↗</a>
       </div>
-    </div>
-    <div class="terminal" aria-hidden="true">
-      <div class="terminal-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="terminal-title">qa_status.sh</span></div>
-      <pre class="terminal-body"><span class="t-prompt">$</span> whoami
-Rafia Fatima
-Senior QA Engineer @ Absoluit
-
-<span class="t-prompt">$</span> status --check
-<span class="t-pass">[PASS]</span> 4+ yrs in software quality assurance
-<span class="t-pass">[PASS]</span> 7 products shipped to production
-<span class="t-pass">[PASS]</span> Based in Islamabad, PK · remote-friendly<span class="cursor"></span></pre>
     </div>
   </div>
   <div class="container">
