@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rafia Fatima — Senior QA Engineer</title>
+<meta name="description" content="Rafia Fatima — Senior Software Quality Assurance Specialist at Absoluit. 4+ years architecting test strategies across web, mobile, and API platforms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+  /* ============================================================
+     DESIGN PLAN
+     Layout: single-column "test report" scroll — sticky status-bar
+     nav, numbered mono eyebrows per section (like a report's TOC),
+     a terminal-style hero readout, timeline for experience, a
+     coverage grid for skills, card grid for projects.
+     Color: cool paper / ink-navy surfaces with one teal "verified"
+     accent; a separate reserved green marks literal PASS/status chips.
+     Type: IBM Plex Mono (display/eyebrows/data) + IBM Plex Sans (body).
+     ============================================================ */
+  :root{
+    --bg:#F5F7F9; --surface:#FFFFFF; --surface-2:#EEF2F4;
+    --ink:#10161F; --ink-soft:#4B5768; --muted:#8891A0; --border:#DEE4E9;
+    --accent:#0B7285; --accent-ink:#055C6B; --accent-soft:#E2F1F1;
+    --good:#15803D; --good-soft:#E6F6EC;
+    --font-mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+    --font-sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --nav-h:64px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0A0E13; --surface:#121821; --surface-2:#1A212C;
+      --ink:#E7ECF2; --ink-soft:#AEB8C4; --muted:#6B7684; --border:#232C38;
+      --accent:#35C9BA; --accent-ink:#8CE3DA; --accent-soft:#0F2E2E;
+      --good:#34D399; --good-soft:#0F2A20;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0A0E13; --surface:#121821; --surface-2:#1A212C;
+    --ink:#E7ECF2; --ink-soft:#AEB8C4; --muted:#6B7684; --border:#232C38;
+    --accent:#35C9BA; --accent-ink:#8CE3DA; --accent-soft:#0F2E2E;
+    --good:#34D399; --good-soft:#0F2A20;
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--font-sans); font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  section[id]{scroll-margin-top:calc(var(--nav-h) + 16px);}
+  img{max-width:100%;}
+  [hidden]{display:none!important;}
+  a{color:inherit;}
+  ::selection{background:var(--accent); color:#fff;}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px;}
+
+  .container{
+    max-width:920px; margin-inline:auto;
+    padding-left:max(20px, env(safe-area-inset-left,0px));
+    padding-right:max(20px, env(safe-area-inset-right,0px));
+  }
+
+  h1,h2,h3{font-family:var(--font-sans); font-weight:700; margin:0; text-wrap:balance;}
+  p{margin:0;}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:0.75rem; font-weight:600;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--accent-ink);
+    display:flex; align-items:center; gap:10px; margin-bottom:14px;
+  }
+  .eyebrow::before{content:"";width:18px;height:1px;background:var(--accent);display:inline-block;}
+
+  /* ---------- Nav ---------- */
+  body::before{
+    content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px);
+    z-index:30; background:var(--surface);
+  }
+  .nav{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:20;
+    background:color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--border);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    min-height:var(--nav-h); flex-wrap:wrap; padding-block:10px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-weight:600; font-size:0.95rem;}
+  .brand-mark{
+    width:34px; height:34px; border-radius:8px; background:var(--ink);
+    color:var(--bg); display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-weight:700; font-size:0.85rem;
+  }
+  .nav-links{display:flex; gap:22px; flex-wrap:wrap; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    font-size:0.875rem; font-weight:500; text-decoration:none; color:var(--ink-soft);
+    padding:6px 2px; border-bottom:2px solid transparent;
+  }
+  .nav-links a:hover{color:var(--ink); border-color:var(--accent);}
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:6px; font-size:0.8125rem; font-weight:600;
+    padding:8px 14px; border-radius:7px; background:var(--ink); color:var(--bg);
+    text-decoration:none; white-space:nowrap;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .nav-cta{background:var(--accent); color:#06201D;} }
+  :root[data-theme="dark"] .nav-cta{background:var(--accent); color:#06201D;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding-block:56px 48px; border-bottom:1px solid var(--border);}
+  .hero-grid{display:grid; grid-template-columns:1.15fr 1fr; gap:40px; align-items:center;}
+  @media (max-width:760px){ .hero-grid{grid-template-columns:1fr;} }
+
+  .status-pill{
+    display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono);
+    font-size:0.75rem; font-weight:600; letter-spacing:0.04em; color:var(--good);
+    background:var(--good-soft); border:1px solid color-mix(in srgb, var(--good) 35%, transparent);
+    padding:6px 12px; border-radius:999px; margin-bottom:20px;
+  }
+  .status-dot{width:7px; height:7px; border-radius:50%; background:var(--good);}
+  @media (prefers-reduced-motion: no-preference){ .status-dot{animation:pulse 2.2s ease-in-out infinite;} }
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+
+  .hero h1{font-size:clamp(2.1rem,5.4vw,3.3rem); line-height:1.08; letter-spacing:-0.01em;}
+  .hero .role{
+    font-family:var(--font-mono); color:var(--accent-ink); font-size:clamp(1rem,2.4vw,1.2rem);
+    font-weight:600; margin-top:10px;
+  }
+  .hero .pitch{margin-top:18px; max-width:52ch; color:var(--ink-soft); font-size:1.05rem;}
+  .hero-ctas{display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;}
+  .btn{
+    font-family:var(--font-sans); font-weight:600; font-size:0.9rem; cursor:pointer;
+    padding:12px 20px; border-radius:8px; border:1px solid var(--border);
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none; background:var(--surface); color:var(--ink);
+  }
+  .btn-primary{background:var(--ink); color:var(--bg); border-color:var(--ink);}
+  :root[data-theme="dark"] .btn-primary{background:var(--accent); color:#06201D; border-color:var(--accent);}
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .btn-primary{background:var(--accent); color:#06201D; border-color:var(--accent);} }
+  .btn:hover{transform:translateY(-1px); border-color:var(--accent);}
+  .btn:active{transform:translateY(0);}
+  .btn-copied{color:var(--good)!important; border-color:var(--good)!important;}
+
+  /* Terminal readout */
+  .terminal{
+    background:var(--ink); color:#D7E4E2; border-radius:12px; overflow:hidden;
+    box-shadow:0 20px 40px -24px rgba(0,0,0,.45); border:1px solid var(--border);
+  }
+  :root[data-theme="dark"] .terminal{background:#06090D;}
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .terminal{background:#06090D;} }
+  .terminal-bar{display:flex; align-items:center; gap:7px; padding:11px 14px; background:rgba(255,255,255,.06);}
+  .terminal-bar .dot{width:10px; height:10px; border-radius:50%;}
+  .terminal-bar .r{background:#FF5F57;} .terminal-bar .y{background:#FEBC2E;} .terminal-bar .g{background:#28C840;}
+  .terminal-title{margin-left:8px; font-family:var(--font-mono); font-size:0.75rem; color:#8A96A3;}
+  .terminal-body{
+    margin:0; padding:20px 18px 24px; font-family:var(--font-mono); font-size:0.85rem;
+    line-height:1.85; white-space:pre-wrap;
+  }
+  .t-prompt{color:#6FD6C9;}
+  .t-pass{color:#52E3A4; font-weight:600;}
+  .t-dim{color:#6B7684;}
+  .cursor{display:inline-block; width:7px; height:1em; background:#52E3A4; margin-left:2px; vertical-align:text-bottom;}
+  @media (prefers-reduced-motion: no-preference){ .cursor{animation:blink 1s step-end infinite;} }
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ---------- Stat row ---------- */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-top:40px;}
+  @media (max-width:640px){ .stats{grid-template-columns:repeat(2,1fr);} }
+  .stat{background:var(--surface); padding:20px 16px; text-align:left;}
+  .stat-value{font-family:var(--font-sans); font-weight:700; font-size:clamp(1.5rem,3.2vw,2rem); color:var(--ink); font-variant-numeric:proportional-nums;}
+  .stat-label{margin-top:4px; font-family:var(--font-mono); font-size:0.72rem; letter-spacing:.03em; color:var(--muted); text-transform:uppercase;}
+
+  /* ---------- Generic section ---------- */
+  section.block{padding-block:64px; border-bottom:1px solid var(--border);}
+  .block-head{max-width:640px; margin-bottom:36px;}
+  .block-head h2{font-size:clamp(1.5rem,3vw,1.9rem);}
+  .block-head .sub{margin-top:10px; color:var(--ink-soft);}
+
+  /* About */
+  .about-copy{max-width:72ch; display:flex; flex-direction:column; gap:16px; color:var(--ink-soft); font-size:1.02rem;}
+  .about-copy strong{color:var(--ink);}
+
+  /* Timeline */
+  .timeline{display:flex; flex-direction:column; gap:0;}
+  .tl-item{position:relative; padding-left:28px; padding-bottom:40px; border-left:2px solid var(--border);}
+  .tl-item:last-child{padding-bottom:4px;}
+  .tl-item::before{
+    content:""; position:absolute; left:-7px; top:4px; width:12px; height:12px;
+    border-radius:50%; background:var(--surface); border:2px solid var(--accent);
+  }
+  .tl-item.current::before{background:var(--accent);}
+  .tl-head{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 16px;}
+  .tl-role{font-size:1.1rem; font-weight:700;}
+  .tl-org{color:var(--accent-ink); font-weight:600;}
+  .tl-dates{font-family:var(--font-mono); font-size:0.78rem; color:var(--muted); white-space:nowrap;}
+  .tl-meta{font-size:0.85rem; color:var(--muted); margin-top:2px;}
+  .tl-badge{
+    display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:0.68rem;
+    font-weight:600; letter-spacing:.04em; color:var(--good); background:var(--good-soft);
+    padding:3px 9px; border-radius:999px; margin-left:8px; vertical-align:middle;
+  }
+  .tl-bullets{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:9px;}
+  .tl-bullets li{position:relative; padding-left:20px; color:var(--ink-soft); font-size:0.94rem;}
+  .tl-bullets li::before{content:"›"; position:absolute; left:0; color:var(--accent); font-weight:700;}
+
+  /* Projects */
+  .proj-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+  @media (max-width:700px){ .proj-grid{grid-template-columns:1fr;} }
+  .proj-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:22px;
+    display:flex; flex-direction:column; gap:10px; min-width:0;
+  }
+  .proj-top{display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
+  .proj-name{font-size:1.05rem; font-weight:700;}
+  .verified{
+    flex-shrink:0; display:inline-flex; align-items:center; gap:5px; font-family:var(--font-mono);
+    font-size:0.65rem; font-weight:600; color:var(--good); background:var(--good-soft);
+    padding:3px 8px; border-radius:999px; white-space:nowrap;
+  }
+  .proj-tag{font-family:var(--font-mono); font-size:0.7rem; letter-spacing:.03em; color:var(--muted); text-transform:uppercase;}
+  .proj-desc{color:var(--ink-soft); font-size:0.9rem; line-height:1.6;}
+
+  /* Coverage / skills */
+  .coverage-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px 40px;}
+  @media (max-width:700px){ .coverage-grid{grid-template-columns:1fr;} }
+  .cov-group h3{font-family:var(--font-mono); font-size:0.78rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; padding-bottom:10px; border-bottom:1px solid var(--border); margin-bottom:14px;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-size:0.82rem; font-weight:500; padding:7px 13px; border-radius:999px;
+    background:var(--surface-2); border:1px solid var(--border); color:var(--ink-soft);
+  }
+
+  /* Certifications */
+  .cert-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  @media (max-width:700px){ .cert-grid{grid-template-columns:1fr;} }
+  .cert-card{display:flex; gap:14px; align-items:flex-start; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px;}
+  .cert-icon{
+    flex-shrink:0; width:36px; height:36px; border-radius:8px; background:var(--accent-soft);
+    color:var(--accent-ink); display:flex; align-items:center; justify-content:center; font-weight:700; font-family:var(--font-mono); font-size:0.8rem;
+  }
+  .cert-name{font-weight:600; font-size:0.92rem;}
+  .cert-issuer{font-size:0.8rem; color:var(--muted); margin-top:2px;}
+
+  /* Education */
+  .edu-card{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:22px;}
+  .edu-degree{font-weight:700; font-size:1.05rem;}
+  .edu-school{color:var(--accent-ink); font-weight:600; margin-top:4px;}
+  .edu-meta{color:var(--muted); font-size:0.85rem; margin-top:6px;}
+  .edu-grade{font-family:var(--font-mono); font-size:0.8rem; color:var(--ink-soft); white-space:nowrap;}
+
+  /* Contact */
+  .contact{background:var(--ink); color:var(--bg); padding-block:64px;}
+  :root[data-theme="dark"] .contact{background:var(--surface-2);}
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .contact{background:var(--surface-2);} }
+  .contact h2{color:inherit; font-size:clamp(1.6rem,3.6vw,2.4rem);}
+  .contact .sub{color:#AEB8C4; max-width:54ch; margin-top:12px;}
+  .contact-row{display:flex; flex-wrap:wrap; gap:14px; margin-top:30px; align-items:center;}
+  .email-box{
+    display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15); border-radius:8px; padding:12px 16px;
+    font-family:var(--font-mono); font-size:0.88rem; color:#E7ECF2;
+  }
+  .copy-btn{
+    background:transparent; border:1px solid rgba(255,255,255,.25); color:#E7ECF2;
+    border-radius:6px; padding:5px 10px; font-size:0.72rem; font-weight:600; cursor:pointer; font-family:var(--font-sans);
+  }
+  .copy-btn:hover{border-color:var(--accent); color:var(--accent);}
+  .contact-meta{margin-top:26px; display:flex; gap:22px; flex-wrap:wrap; font-size:0.85rem; color:#8A96A3;}
+  footer{padding-block:22px; text-align:center; font-size:0.8rem; color:var(--muted);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-row">
+    <div class="brand"><span class="brand-mark">RF</span> Rafia Fatima</div>
+    <ul class="nav-links">
+      <li><a href="#about">Profile</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#coverage">Coverage</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="https://www.linkedin.com/in/rafia-fatima-41b328215/" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="status-pill"><span class="status-dot"></span>Open to new opportunities</div>
+      <h1>Rafia Fatima</h1>
+      <div class="role">Senior QA Engineer · Absoluit</div>
+      <p class="pitch">I help engineering teams ship reliable software faster — architecting test strategies across web, mobile, and API platforms for ride-hailing, fintech, and consumer products.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" id="heroEmailBtn" type="button">Copy Email</button>
+        <a class="btn" href="https://www.linkedin.com/in/rafia-fatima-41b328215/" target="_blank" rel="noopener">View LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="terminal" aria-hidden="true">
+      <div class="terminal-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="terminal-title">qa_status.sh</span></div>
+      <pre class="terminal-body"><span class="t-prompt">$</span> whoami
+Rafia Fatima
+Senior QA Engineer @ Absoluit
+
+<span class="t-prompt">$</span> status --check
+<span class="t-pass">[PASS]</span> 4+ yrs in software quality assurance
+<span class="t-pass">[PASS]</span> 7 products shipped to production
+<span class="t-pass">[PASS]</span> Based in Islamabad, PK · remote-friendly<span class="cursor"></span></pre>
+    </div>
+  </div>
+  <div class="container">
+    <div class="stats">
+      <div class="stat"><div class="stat-value">4+</div><div class="stat-label">Years in QA</div></div>
+      <div class="stat"><div class="stat-value">7</div><div class="stat-label">Products shipped</div></div>
+      <div class="stat"><div class="stat-value">30%</div><div class="stat-label">Faster defect detection</div></div>
+      <div class="stat"><div class="stat-value">25%</div><div class="stat-label">Fewer prod defects</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="about">
+  <div class="container">
+    <div class="block-head">
+      <div class="eyebrow">Section 01 — Profile</div>
+      <h2>About</h2>
+    </div>
+    <div class="about-copy">
+      <p>Senior Software Quality Assurance Specialist with <strong>4+ years of experience</strong> building robust, scalable testing strategies across web, mobile, and API platforms. I combine strong manual-testing fundamentals with end-to-end automation to help engineering teams ship reliable software, faster.</p>
+      <p>At <strong>Absoluit</strong>, I architect and execute comprehensive test strategies — functional, regression, and performance — across web and mobile products, improving defect identification by <strong>30%</strong> and cutting release cycles by <strong>20%</strong> through CI/CD-integrated automated suites. I design test plans and coverage matrices aligned to product requirements, lead and mentor a team of junior testers, and partner closely with developers and DevOps to catch issues early, reducing production defects by <strong>25%</strong>.</p>
+      <p>My toolkit spans <strong>Selenium WebDriver, Cypress, Postman, Burp Suite, and OWASP ZAP</strong> for functional, API, and security testing; <strong>C#, NUnit, MSTest, and xUnit</strong> for automation frameworks; <strong>Azure DevOps and JIRA</strong> for defect tracking; and <strong>Docker, CI/CD, SQL Server, and MySQL</strong> for environment setup and data validation.</p>
+      <p>I've applied this across a diverse product portfolio — white-label ride-hailing platforms, a co-parenting app, a customer-support platform, an eSIM management app, and an internal test-case management system — covering everything from real-time tracking and payments to secure messaging and authentication. I'm the recipient of an <strong>"Excellence in Quality Assurance"</strong> award and an internal Hackathon win, and I'm passionate about shift-left testing and continuously raising the bar for software reliability.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="experience">
+  <div class="container">
+    <div class="block-head">
+      <div class="eyebrow">Section 02 — Experience</div>
+      <h2>Where I've tested</h2>
+      <p class="sub">A progression from hands-on manual testing to architecting QA strategy for a full product portfolio.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item current">
+        <div class="tl-head">
+          <div><span class="tl-role">Senior Software Quality Assurance Specialist</span><span class="tl-badge"><span class="status-dot" style="width:5px;height:5px;"></span>Current</span><div class="tl-org">Absoluit</div></div>
+          <div class="tl-dates">Sep 2023 — Present</div>
+        </div>
+        <div class="tl-meta">Islamabad, Pakistan · On-site · Full-time</div>
+        <ul class="tl-bullets">
+          <li>Architect and execute comprehensive test strategies — functional, regression, performance — across web and mobile platforms, improving defect identification by 30%.</li>
+          <li>Integrate automated test suites into CI/CD pipelines, reducing release cycles by 20% and enabling continuous quality validation with every deployment.</li>
+          <li>Build and maintain automated API test cases using Postman and Selenium, cutting manual testing overhead.</li>
+          <li>Lead and mentor a team of 3 junior testers, overseeing delivery of 10+ high-quality releases.</li>
+          <li>Partner closely with developers on shift-left testing and proactive quality advocacy, reducing production defects by 25%.</li>
+          <li>Recipient of the "Excellence in Quality Assurance" award and an internal Hackathon win for measurable business impact (2024).</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <div><span class="tl-role">Junior Software Quality Assurance Engineer</span><div class="tl-org">Absoluit</div></div>
+          <div class="tl-dates">Aug 2022 — Aug 2023</div>
+        </div>
+        <div class="tl-meta">Islamabad, Pakistan · On-site · Full-time</div>
+        <ul class="tl-bullets">
+          <li>Executed manual and functional test cases across web and mobile platforms, ensuring alignment with product requirements.</li>
+          <li>Performed API testing with Postman and assisted in automating test cases with Selenium WebDriver.</li>
+          <li>Logged and tracked defects using Azure DevOps and JIRA, collaborating closely with developers through the bug lifecycle.</li>
+          <li>Gained hands-on exposure to CI/CD workflows, laying the groundwork for promotion to a senior QA role.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <div><span class="tl-role">Software Quality Assurance Analyst</span><div class="tl-org">siParadigm</div></div>
+          <div class="tl-dates">Jan 2022 — Jun 2022</div>
+        </div>
+        <ul class="tl-bullets">
+          <li>Designed and executed manual test cases for web applications, aligned to business requirements.</li>
+          <li>Developed automated test scripts using Selenium WebDriver, building automation-framework fundamentals.</li>
+          <li>Performed API testing with Postman and documented defects systematically in JIRA.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <div><span class="tl-role">QA Engineer</span><div class="tl-org">Enabling Systems · Internship</div></div>
+          <div class="tl-dates">Apr 2021 — Oct 2021</div>
+        </div>
+        <div class="tl-meta">Rawalpindi, Punjab, Pakistan</div>
+        <ul class="tl-bullets">
+          <li>Built foundational manual-testing skills on live product features, starting a career in software quality.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="projects">
+  <div class="container">
+    <div class="block-head">
+      <div class="eyebrow">Section 03 — Projects</div>
+      <h2>Products I've QA'd</h2>
+      <p class="sub">Seven production apps across ride-hailing, fintech, family-tech, and internal tooling — all independently tested and verified.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-top"><span class="proj-name">Cabsoluit Booking</span><span class="verified">✓ Verified</span></div>
+        <div class="proj-tag">Android · iOS · Ride-hailing</div>
+        <p class="proj-desc">White-label ride-booking app built with Kotlin Multiplatform. Tested instant, scheduled, and recurring bookings, real-time driver tracking, multi-stop routing, fare estimation, payments, and tenant branding.</p>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><span class="proj-name">Cabsoluit Driver</span><span class="verified">✓ Verified</span></div>
+        <div class="proj-tag">Android · Ride-hailing</div>
+        <p class="proj-desc">Led QA for the driver-side app: real-time ride requests, dispatch logic, trip lifecycle, maps and navigation, fare estimation, payments, and earnings tracking across branded builds.</p>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><span class="proj-name">Vao — Book a Ride</span><span class="verified">✓ Verified</span></div>
+        <div class="proj-tag">Android · iOS · Ride-hailing</div>
+        <p class="proj-desc">White-label deployment of the Cabsoluit platform. Validated booking flows, fare estimation, live driver tracking, ETA/route updates, and tenant-specific branding.</p>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><span class="proj-name">CoParents Connect</span><span class="verified">✓ Verified</span></div>
+        <div class="proj-tag">Android · iOS · Family tech</div>
+        <p class="proj-desc">Cross-platform co-parenting app. Tested shared calendars, custody planning, secure messaging, real-time notifications, expense tracking, and subscription management.</p>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><span class="proj-name">Supbotive</span><span class="verified">✓ Verified</span></div>
+        <div class="proj-tag">Android · iOS · Customer support</div>
+        <p class="proj-desc">Customer-support and team-collaboration app. Verified real-time chat, unified inbox, multimedia sharing, read receipts, offline caching, and push notifications.</p>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><span class="proj-name">Vibranta Connect</span><span class="verified">✓ Verified</span></div>
+        <div class="proj-tag">Flutter · eSIM</div>
+        <p class="proj-desc">Flutter-based eSIM management app. Covered onboarding, account security, device compatibility, eSIM purchase/top-up flows, and social sign-in.</p>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><span class="proj-name">TestHub</span><span class="verified">✓ Verified</span></div>
+        <div class="proj-tag">Internal tool · Test management</div>
+        <p class="proj-desc">Internally built test-case management platform. Validated project organization, hierarchical test suites and cases, test planning, and execution workflows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="coverage">
+  <div class="container">
+    <div class="block-head">
+      <div class="eyebrow">Section 04 — Coverage</div>
+      <h2>Tools &amp; practices</h2>
+      <p class="sub">Coverage across the full testing lifecycle, from manual exploratory work to CI/CD-integrated automation.</p>
+    </div>
+    <div class="coverage-grid">
+      <div class="cov-group">
+        <h3>Test automation &amp; frameworks</h3>
+        <div class="chips">
+          <span class="chip">Selenium WebDriver</span><span class="chip">Cypress</span><span class="chip">Playwright</span>
+          <span class="chip">C#</span><span class="chip">NUnit</span><span class="chip">MSTest</span><span class="chip">xUnit</span>
+        </div>
+      </div>
+      <div class="cov-group">
+        <h3>API &amp; security testing</h3>
+        <div class="chips">
+          <span class="chip">Postman</span><span class="chip">API Testing</span><span class="chip">Swagger</span>
+          <span class="chip">Burp Suite</span><span class="chip">OWASP ZAP</span>
+        </div>
+      </div>
+      <div class="cov-group">
+        <h3>Manual &amp; functional QA</h3>
+        <div class="chips">
+          <span class="chip">Manual Testing</span><span class="chip">Functional Testing</span><span class="chip">Regression Testing</span>
+          <span class="chip">Black-box Testing</span><span class="chip">Root Cause Analysis</span><span class="chip">SaaS Testing</span>
+        </div>
+      </div>
+      <div class="cov-group">
+        <h3>Tools &amp; delivery</h3>
+        <div class="chips">
+          <span class="chip">Azure DevOps</span><span class="chip">JIRA</span><span class="chip">Docker</span>
+          <span class="chip">GitHub</span><span class="chip">CI/CD</span><span class="chip">Agile · Kanban</span>
+        </div>
+      </div>
+      <div class="cov-group">
+        <h3>Dev fundamentals</h3>
+        <div class="chips">
+          <span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">SQL Server</span><span class="chip">MySQL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="certifications" style="padding-bottom:40px;">
+  <div class="container">
+    <div class="block-head">
+      <div class="eyebrow">Section 05 — Certifications</div>
+      <h2>Credentials</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card"><div class="cert-icon">in</div><div><div class="cert-name">Software Testing Foundations: Integrating AI into the Quality Process</div><div class="cert-issuer">LinkedIn Learning</div></div></div>
+      <div class="cert-card"><div class="cert-icon">in</div><div><div class="cert-name">Postman Essential Training</div><div class="cert-issuer">LinkedIn Learning</div></div></div>
+      <div class="cert-card"><div class="cert-icon">in</div><div><div class="cert-name">Learning Playwright</div><div class="cert-issuer">LinkedIn Learning</div></div></div>
+      <div class="cert-card"><div class="cert-icon">in</div><div><div class="cert-name">Software Testing Foundations: Transitioning from Manual to Automation</div><div class="cert-issuer">LinkedIn Learning · 2026</div></div></div>
+      <div class="cert-card"><div class="cert-icon">in</div><div><div class="cert-name">AI for Software Testers</div><div class="cert-issuer">LinkedIn Learning · 2026</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="education" style="padding-top:0;">
+  <div class="container">
+    <div class="block-head">
+      <div class="eyebrow">Section 06 — Education</div>
+      <h2>Academic background</h2>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">B.S. Information Technology</div>
+        <div class="edu-school">Bahauddin Zakariya University, Multan</div>
+        <div class="edu-meta">Graduated 2022 · Executive Member, Technical Societies (2019 – 2020)</div>
+      </div>
+      <div class="edu-grade">GPA 3.5 / 4.0</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="eyebrow" style="color:var(--accent);">Section 07 — Contact</div>
+    <h2>Let's work together</h2>
+    <p class="sub">Open to Senior QA Engineer, SDET, and Automation Test Engineer roles — on-site, hybrid, or remote.</p>
+    <div class="contact-row">
+      <div class="email-box"><span id="emailText">rafiafatima998@gmail.com</span><button class="copy-btn" id="copyBtn" type="button">Copy</button></div>
+      <a class="btn" style="background:transparent;border-color:rgba(255,255,255,.25);color:#E7ECF2;" href="https://www.linkedin.com/in/rafia-fatima-41b328215/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+    </div>
+    <div class="contact-meta">
+      <span>📍 Islamabad, Pakistan</span>
+      <span>Absoluit — Senior QA Engineer</span>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Rafia Fatima · Built from a QA engineer's real test reports, not a template.</footer>
+
+<script>
+(function(){
+  var EMAIL = "rafiafatima998@gmail.com";
+  function copy(text, btn, revertLabel){
+    var original = btn.textContent;
+    function done(ok){
+      btn.textContent = ok ? "Copied!" : "Copy manually";
+      btn.classList.toggle('btn-copied', ok);
+      setTimeout(function(){ btn.textContent = revertLabel || original; btn.classList.remove('btn-copied'); }, 1800);
+    }
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){done(true);}).catch(function(){done(false);});
+      } else { done(false); }
+    }catch(e){ done(false); }
+  }
+  var heroBtn = document.getElementById('heroEmailBtn');
+  var copyBtn = document.getElementById('copyBtn');
+  if(heroBtn) heroBtn.addEventListener('click', function(){ copy(EMAIL, heroBtn, 'Copy Email'); });
+  if(copyBtn) copyBtn.addEventListener('click', function(){ copy(EMAIL, copyBtn, 'Copy'); });
+})();
+</script>
+</body>
+</html>
